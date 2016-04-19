@@ -9,7 +9,7 @@ public class SMTPClient {
     private static final Logger LOG = Logger.getLogger(SMTPClient.class.getName());
     private Socket ClientSocket;
 
-    public SMTPClient(String adrServer, int portServer) {
+    public SMTPClient(String adrServer, int portServer,String relayer) {
 
         try {
             ClientSocket = new Socket(adrServer, portServer);
@@ -22,13 +22,13 @@ public class SMTPClient {
             PrintWriter os = new PrintWriter(new OutputStreamWriter(ClientSocket.getOutputStream(), "UTF-8"));
             String buffer = new String();
 
-            os.println("test");       // #TODO SERVER SMTP
+            os.println("HELO "+relayer);
             os.flush();
 
             buffer = is.readLine();
-            int b = Integer.valueOf(buffer);     // #TODO PROTOCOL
+            int b = Integer.valueOf(buffer);
 
-            if (b != 100) {
+            if (b != 250) {
                 throw new IOException("Server refused connection");
             } else {
                 LOG.info("server accepted connection");
@@ -39,7 +39,24 @@ public class SMTPClient {
         }
     }
 
-    public void sendMessage(String msg) throws IOException {
+    public void sendMail(Mail m){
+        try {
+            sendMessage("MAIL FROM:<" + m.getFrom() + ">");
+
+            for(String to : m.getTo()){
+                sendMessage("RCPT TO:<"+to+">");
+            }
+
+            sendMessage("DATA");
+            sendMessage(m.getHeader());
+            sendMessage(m.getMsgContent());
+            sendMessage(".");
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void sendMessage(String msg) throws IOException {
 
         PrintWriter os = new PrintWriter(new OutputStreamWriter(ClientSocket.getOutputStream(), "UTF-8"));
         os.println(msg);
