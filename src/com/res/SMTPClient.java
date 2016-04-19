@@ -49,7 +49,7 @@ public class SMTPClient {
 
             sendMessage("DATA");
             sendMessage(m.getHeader());
-            sendMessage(m.getMsgContent());
+            sendMessage(m.getMsg());
             sendMessage(".");
         }catch(IOException e){
             e.printStackTrace();

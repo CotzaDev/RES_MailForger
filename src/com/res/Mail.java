@@ -16,7 +16,7 @@ public class Mail {
         return "";
     }
 
-    public String getMsgContent() {
+    public String getMsg() {
         return "";
     }
 }
