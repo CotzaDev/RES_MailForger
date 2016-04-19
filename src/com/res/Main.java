@@ -1,9 +1,20 @@
 package com.res;
 
-import sun.net.smtp.SmtpClient;
+/*import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Iterator;
+*/
+
 import java.util.Scanner;
+import java.util.ArrayList;
+
+import sun.net.smtp.SmtpClient;
 
 public class Main {
 
@@ -40,6 +51,25 @@ public class Main {
         System.out.println("Enter a list of message [Separate by ;] : ");
         s = sc.nextLine();
         lstm.fetchMsgStringBySep(s,';');
+
+        /*JSONParser parser = new JSONParser();
+
+        try {
+            JSONObject jsonObject = parser.parse(new FileReader("c:\\test.json"));
+
+            JSONArray msg = (JSONArray) jsonObject.get("messages");
+            Iterator<String> iterator = msg.iterator();
+            while (iterator.hasNext()) {
+                System.out.println(iterator.next());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }*/
+
 
 
         for(GroupOfVictim grp : groups){
