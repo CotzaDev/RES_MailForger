@@ -30,8 +30,8 @@ public class Main {
 
         for(int i=0;i < z;i++){
             GroupOfVictim g = new GroupOfVictim();
-            g.addRecipient(lstv.getASublist(i*z,z-1));
-            g.addSender(lstv.getOneVictim(i*z));
+            g.setRecipient(lstv.getASublist(i*z,z-1));
+            g.setSender(lstv.getOneVictim(i*z));
 
             groups.add(g);
         }
@@ -54,13 +54,14 @@ public class Main {
         for(String msg : lstm.getMessage()){
 
         }
+
         System.out.println("Choose the message");
         s = sc.nextLine();
 
         mail.setMsg();
 
         //#TODO choisir les parametres serveur
-        SMTPClient client = new SMTPClient("10.192.95.2",1025,"prank.com");
+        SMTPClient client = new SMTPClient("10.192.95.233",1025,"prank.com");
 
         //#TODO demander une confirmation
         client.sendMail(mail);

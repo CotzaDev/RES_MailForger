@@ -1,22 +1,39 @@
 package com.res;
 
+import java.util.List;
+
 public class Mail {
     String from;
-    String[] to;
+    List<String> to;
+    String msg;
 
     public String getFrom() {
         return from;
     }
 
-    public String[] getTo() {
+    public List getTo() {
         return to;
     }
 
     public String getHeader() {
-        return "";
+        String header = "";
+
+        return header;
     }
 
     public String getMsg() {
-        return "";
+        return msg;
+    }
+
+    public void setTo(List lst) {
+        to = lst;
+    }
+
+    public void setFrom(String from){
+        this.from = from;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }
