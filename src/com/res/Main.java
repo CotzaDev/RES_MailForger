@@ -1,6 +1,5 @@
 package com.res;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -9,7 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
@@ -34,7 +32,7 @@ public class Main {
         /**
          * GET LIST MAIL
          */
-        System.out.println("Enter the name of file where the list of email is  : ");
+        System.out.println("Enter the filename of the mail addresses list  : ");
         s = sc.nextLine();
 
         lstv.loadJson(s);
@@ -76,7 +74,7 @@ public class Main {
         /**
          * GET THE MESSAGE
          */
-        System.out.println("Enter a the name of the file where the message are : ");
+        System.out.println("Enter the filename of the messages list : ");
         s = sc.nextLine();
 
         lstm.loadJson(s);
@@ -93,7 +91,7 @@ public class Main {
             System.out.println();
         }
 
-        System.out.println("Choose the group :");
+        System.out.println("Choose a group :");
         s = sc.nextLine();
 
         mail.setTo(groups.get(Integer.parseInt(s)).getRecipient());
@@ -107,7 +105,7 @@ public class Main {
             System.out.println();
         }
 
-        System.out.println("Choose the message");
+        System.out.println("Choose a message");
         s = sc.nextLine();
 
         mail.setSubj(lstm.getMessage().get(Integer.parseInt(s)).getSubj());

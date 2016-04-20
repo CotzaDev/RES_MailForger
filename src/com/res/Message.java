@@ -1,18 +1,3 @@
-/**
- * -----------------------------------------------------------------------------------
- * Laboratoire : <nn>
- * Fichier     : Message.java
- * Auteur(s)   : Andrea Cotza
- * Date        : 20.04.2016
- * <p>
- * But         : <‡ complÈter>
- * <p>
- * Remarque(s) : <‡ complÈter>
- * <p>
- * Compilateur : jdk1.8.0_60
- * -----------------------------------------------------------------------------------
- */
-
 package com.res;
 
 public class Message {
