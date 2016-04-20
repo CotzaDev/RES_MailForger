@@ -22,13 +22,23 @@ public class SMTPClient {
             PrintWriter os = new PrintWriter(new OutputStreamWriter(ClientSocket.getOutputStream(), "UTF-8"));
             String buffer = new String();
 
+            buffer = is.readLine();
+            String b = buffer;
+
+            if (Integer.parseInt(b.substring(0,3)) != 220) {
+                throw new IOException("Server off");
+            } else {
+                LOG.info("server on");
+            }
+
+
             os.println("HELO "+relayer);
             os.flush();
 
             buffer = is.readLine();
-            int b = Integer.valueOf(buffer);
+            b = buffer;
 
-            if (b != 250) {
+            if (Integer.parseInt(b.substring(0,3)) != 250) {
                 throw new IOException("Server refused connection");
             } else {
                 LOG.info("server accepted connection");
@@ -41,13 +51,29 @@ public class SMTPClient {
 
     public void sendMail(Mail m){
         try {
+            BufferedReader is = new BufferedReader(new InputStreamReader(ClientSocket.getInputStream(), "UTF-8"));
+            String buffer = new String();
+
+            String b = buffer;
+
+            LOG.info("MAIL FROM:<" + m.getFrom() + ">");
             sendMessage("MAIL FROM:<" + m.getFrom() + ">");
+            buffer = is.readLine();
+            LOG.info(buffer);
+
 
             for(String to : m.getTo()){
+                LOG.info("RCPT TO:<"+to+">");
                 sendMessage("RCPT TO:<"+to+">");
+                buffer = is.readLine();
+                LOG.info(buffer);
             }
 
+            LOG.info("DATA");
             sendMessage("DATA");
+            buffer = is.readLine();
+            LOG.info(buffer);
+
             sendMessage(m.getHeader());
             sendMessage(m.getMsg());
             sendMessage(".");

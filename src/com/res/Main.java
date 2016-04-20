@@ -68,8 +68,8 @@ public class Main {
 
         for (int i = 0; i < nbGroup; i++) {
             GroupOfVictim g = new GroupOfVictim();
-            g.setRecipient(lstv.getASublist(i * nbGroup, nbGroup - 1));
-            g.setSender(lstv.getOneVictim(i * nbGroup));
+            g.setRecipient(lstv.getASublist(i+1, i+3));
+            g.setSender(lstv.getOneVictim(i));
 
             groups.add(g);
         }
@@ -127,7 +127,7 @@ public class Main {
         System.out.println("Choose the message");
         s = sc.nextLine();
 
-        mail.setMsg(s);
+        mail.setMsg(lstm.getMessage().get(Integer.parseInt(s)));
 
 
         /**
@@ -141,8 +141,8 @@ public class Main {
 
 
             System.out.println("Are you sure you want to send those mails ? [Y/N]: ");
-            s = sc.nextLine();
-            if (s.toLowerCase() == "y") {
+            s = sc.nextLine().toLowerCase();
+            if (s.compareTo("y") == 0) {
                 client.sendMail(mail);
             }
 
