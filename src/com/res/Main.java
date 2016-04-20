@@ -59,17 +59,29 @@ public class Main {
         int groupMax = lstv.getNbrVictim() / 3;
         int nbGroup = 0;
 
+
         while (nbGroup == 0 || nbGroup > groupMax) {
             System.out.println(String.format("How many groups ? [Max %d]: ", groupMax));
             s = sc.nextLine();
             nbGroup = Integer.parseInt(s);
         }
 
+        int nbMembers = lstv.getNbrVictim() / nbGroup;
+        int supMembers = lstv.getNbrVictim() - nbMembers * nbGroup;
 
-        for (int i = 0; i < nbGroup; i++) {
+
+        for (int i = 0; i < supMembers * (nbMembers + 1); i += nbMembers + 1) {
             GroupOfVictim g = new GroupOfVictim();
-            g.setRecipient(lstv.getASublist(i + 1, i + 3));
-            g.setSender(lstv.getOneVictim(i));
+            g.setRecipient(lstv.getASublist(i, i + nbMembers));
+            g.setSender(lstv.getOneVictim(i + nbMembers));
+
+            groups.add(g);
+        }
+
+        for (int i = supMembers * (nbMembers + 1); i < lstv.getNbrVictim(); i += nbMembers) {
+            GroupOfVictim g = new GroupOfVictim();
+            g.setRecipient(lstv.getASublist(i, i + nbMembers - 1));
+            g.setSender(lstv.getOneVictim(i + nbMembers - 1));
 
             groups.add(g);
         }
