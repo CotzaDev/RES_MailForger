@@ -50,8 +50,7 @@ This class are just here to make things more easy to maintain & upgrade. They ar
 This the main class of the project.
 
 ## Some screenshot !
-![Screen of Console 1](figures/resultConsoleOne.PNG)
-![Screen of Console 2](figures/resultConsoleTwo.PNG)
+![Screen of Console](figures/resultConsole.PNG)
 
 ## Install a mock SMTP server for testing
 
