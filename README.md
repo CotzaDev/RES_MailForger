@@ -49,7 +49,7 @@ This class are just here to make things more easy to maintain & upgrade. They ar
 
 This the main class of the project.
 
-## Some screenshot !
+## Screenshot !
 ![Screen of Console](figures/resultConsole.png)
 
 ## Install a mock SMTP server for testing
