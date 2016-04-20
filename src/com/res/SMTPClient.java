@@ -29,7 +29,7 @@ public class SMTPClient {
 
         try {
             BufferedReader is = new BufferedReader(new InputStreamReader(ClientSocket.getInputStream(), "UTF-8"));
-            DataOutputStream os = new DataOutputStream(ClientSocket.getOutputStream());
+            PrintWriter os = new PrintWriter(new OutputStreamWriter(ClientSocket.getOutputStream(), "UTF-8"));
             String buffer = new String();
 
             buffer = is.readLine();
@@ -42,7 +42,7 @@ public class SMTPClient {
             }
 
 
-            os.writeBytes("HELO " + relayer + "\r\n");
+            os.print("HELO " + relayer + "\r\n");
             os.flush();
 
             buffer = is.readLine();
@@ -105,8 +105,8 @@ public class SMTPClient {
      */
     private void sendMessage(String msg) throws IOException {
 
-        DataOutputStream os = new DataOutputStream(ClientSocket.getOutputStream());
-        os.writeBytes(msg + "\r\n");
+        PrintWriter os = new PrintWriter(new OutputStreamWriter(ClientSocket.getOutputStream(), "UTF-8"));
+        os.print(msg + "\r\n");
         os.flush();
     }
 }
