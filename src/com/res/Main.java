@@ -137,7 +137,7 @@ public class Main {
             JSONObject conf = (JSONObject)parser.parse(new FileReader("conf.json"));
             JSONObject smtpConf = (JSONObject)conf.get("smtp");
             SMTPClient client = new SMTPClient((String)smtpConf.get("address"),
-                    ((Integer)smtpConf.get("port")).intValue(), (String)smtpConf.get("hostname"));
+                    ((Long)smtpConf.get("port")).intValue(), (String)smtpConf.get("hostname"));
 
 
             System.out.println("Are you sure you want to send those mails ? [Y/N]: ");
