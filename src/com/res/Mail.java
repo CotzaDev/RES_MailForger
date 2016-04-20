@@ -3,6 +3,9 @@ package com.res;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Class who manage and abstract a mail
+ */
 public class Mail {
     String from;
     List<String> to = new ArrayList<String>();
@@ -18,9 +21,9 @@ public class Mail {
 
     public String getHeader() {
         String header = "";
-        header+="From: <"+from+">\n";
-        for(String str : to)
-            header+="To: <"+str+">\n";
+        header += "From: <" + from + ">\n";
+        for (String str : to)
+            header += "To: <" + str + ">\n";
 
         return header;
     }
@@ -33,7 +36,7 @@ public class Mail {
         to = lst;
     }
 
-    public void setFrom(String from){
+    public void setFrom(String from) {
         this.from = from;
     }
 

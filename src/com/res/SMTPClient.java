@@ -4,12 +4,22 @@ import java.io.*;
 import java.net.Socket;
 import java.util.logging.Logger;
 
+/**
+ * Class who manage the interaction between the server and the client
+ */
 public class SMTPClient {
 
     private static final Logger LOG = Logger.getLogger(SMTPClient.class.getName());
     private Socket ClientSocket;
 
-    public SMTPClient(String adrServer, int portServer,String relayer) {
+    /**
+     * Try to connect to the smtp server & say HELO
+     *
+     * @param adrServer
+     * @param portServer
+     * @param relayer
+     */
+    public SMTPClient(String adrServer, int portServer, String relayer) {
 
         try {
             ClientSocket = new Socket(adrServer, portServer);
@@ -25,20 +35,20 @@ public class SMTPClient {
             buffer = is.readLine();
             String b = buffer;
 
-            if (Integer.parseInt(b.substring(0,3)) != 220) {
+            if (Integer.parseInt(b.substring(0, 3)) != 220) {
                 throw new IOException("Server off");
             } else {
                 LOG.info("server on");
             }
 
 
-            os.println("HELO "+relayer);
+            os.println("HELO " + relayer);
             os.flush();
 
             buffer = is.readLine();
             b = buffer;
 
-            if (Integer.parseInt(b.substring(0,3)) != 250) {
+            if (Integer.parseInt(b.substring(0, 3)) != 250) {
                 throw new IOException("Server refused connection");
             } else {
                 LOG.info("server accepted connection");
@@ -49,7 +59,12 @@ public class SMTPClient {
         }
     }
 
-    public void sendMail(Mail m){
+    /**
+     * Send the mail content to the server
+     *
+     * @param m mail you want to send
+     */
+    public void sendMail(Mail m) {
         try {
             BufferedReader is = new BufferedReader(new InputStreamReader(ClientSocket.getInputStream(), "UTF-8"));
             String buffer = new String();
@@ -62,9 +77,9 @@ public class SMTPClient {
             LOG.info(buffer);
 
 
-            for(String to : m.getTo()){
-                LOG.info("RCPT TO:<"+to+">");
-                sendMessage("RCPT TO:<"+to+">");
+            for (String to : m.getTo()) {
+                LOG.info("RCPT TO:<" + to + ">");
+                sendMessage("RCPT TO:<" + to + ">");
                 buffer = is.readLine();
                 LOG.info(buffer);
             }
@@ -77,16 +92,21 @@ public class SMTPClient {
             sendMessage(m.getHeader());
             sendMessage(m.getMsg());
             sendMessage(".");
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Send some text to the server
+     *
+     * @param msg
+     * @throws IOException
+     */
     private void sendMessage(String msg) throws IOException {
 
         PrintWriter os = new PrintWriter(new OutputStreamWriter(ClientSocket.getOutputStream(), "UTF-8"));
         os.println(msg);
         os.flush();
     }
-
 }

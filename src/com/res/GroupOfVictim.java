@@ -3,6 +3,9 @@ package com.res;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class to manage the group of victim
+ */
 public class GroupOfVictim {
     private List<String> recipient = new ArrayList<String>();
     private String sender;
@@ -15,11 +18,11 @@ public class GroupOfVictim {
         this.sender = sender;
     }
 
-    public List<String> getRecipient(){
+    public List<String> getRecipient() {
         return recipient;
     }
 
-    public String getSender(){
+    public String getSender() {
         return sender;
     }
 }

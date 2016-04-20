@@ -43,7 +43,7 @@ public class Main {
             JSONArray person = (JSONArray) jsonObject.get("person");
             Iterator<JSONObject> iterator = person.iterator();
             while (iterator.hasNext()) {
-                lstv.addVictim((String)(iterator.next().get("mail")));
+                lstv.addVictim((String) (iterator.next().get("mail")));
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -59,7 +59,7 @@ public class Main {
         int groupMax = lstv.getNbrVictim() / 3;
         int nbGroup = 0;
 
-        while(nbGroup == 0 || nbGroup > groupMax) {
+        while (nbGroup == 0 || nbGroup > groupMax) {
             System.out.println(String.format("How many groups ? [Max %d]: ", groupMax));
             s = sc.nextLine();
             nbGroup = Integer.parseInt(s);
@@ -68,7 +68,7 @@ public class Main {
 
         for (int i = 0; i < nbGroup; i++) {
             GroupOfVictim g = new GroupOfVictim();
-            g.setRecipient(lstv.getASublist(i+1, i+3));
+            g.setRecipient(lstv.getASublist(i + 1, i + 3));
             g.setSender(lstv.getOneVictim(i));
 
             groups.add(g);
@@ -102,10 +102,10 @@ public class Main {
         /**
          * CHOOSE GROUP
          */
-        for(int i=0;i < groups.size();i++){
-            System.out.print(i+") Recipient : ");
-            for(String str : groups.get(i).getRecipient())
-                System.out.print(str+",");
+        for (int i = 0; i < groups.size(); i++) {
+            System.out.print(i + ") Recipient : ");
+            for (String str : groups.get(i).getRecipient())
+                System.out.print(str + ",");
             System.out.print("Sender : " + groups.get(i).getSender());
             System.out.println();
         }
@@ -119,8 +119,8 @@ public class Main {
         /**
          * CHOOSE MESSAGE
          */
-        for(int i=0;i < lstm.getMessage().size();i++){
-            System.out.print(i+") "+lstm.getMessage().get(i));
+        for (int i = 0; i < lstm.getMessage().size(); i++) {
+            System.out.print(i + ") " + lstm.getMessage().get(i));
             System.out.println();
         }
 
@@ -134,10 +134,10 @@ public class Main {
          * SEND MAIL
          */
         try {
-            JSONObject conf = (JSONObject)parser.parse(new FileReader("conf.json"));
-            JSONObject smtpConf = (JSONObject)conf.get("smtp");
-            SMTPClient client = new SMTPClient((String)smtpConf.get("address"),
-                    ((Long)smtpConf.get("port")).intValue(), (String)smtpConf.get("hostname"));
+            JSONObject conf = (JSONObject) parser.parse(new FileReader("conf.json"));
+            JSONObject smtpConf = (JSONObject) conf.get("smtp");
+            SMTPClient client = new SMTPClient((String) smtpConf.get("address"),
+                    ((Long) smtpConf.get("port")).intValue(), (String) smtpConf.get("hostname"));
 
 
             System.out.println("Are you sure you want to send those mails ? [Y/N]: ");
