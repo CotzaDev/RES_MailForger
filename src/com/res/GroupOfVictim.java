@@ -1,9 +1,10 @@
 package com.res;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GroupOfVictim {
-    private List<String> recipient;
+    private List<String> recipient = new ArrayList<String>();
     private String sender;
 
     public void setRecipient(List<String> aSublist) {

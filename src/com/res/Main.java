@@ -40,14 +40,11 @@ public class Main {
         try {
             Object obj = parser.parse(new FileReader(s));
             JSONObject jsonObject = (JSONObject) obj;
-
             JSONArray person = (JSONArray) jsonObject.get("person");
             Iterator<JSONObject> iterator = person.iterator();
             while (iterator.hasNext()) {
-                System.out.println(iterator.next().get("mail"));
+                lstv.addVictim((String)(iterator.next().get("mail")));
             }
-
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -89,7 +86,7 @@ public class Main {
             while (iterator.hasNext()) {
                 lstm.addMessage(iterator.next());
             }
-            
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

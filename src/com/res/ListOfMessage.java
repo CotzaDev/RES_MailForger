@@ -1,9 +1,10 @@
 package com.res;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListOfMessage {
-    List<String> listOfMessage;
+    List<String> listOfMessage = new ArrayList<String>();
 
     public void fetchMsgStringBySep(String s, Character c) {
         for(String str:s.split("\\"+c)){

@@ -1,9 +1,10 @@
 package com.res;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListOfVicitim {
-    List<String> lstAdrVictim;
+    List<String> lstAdrVictim = new ArrayList<String>();;
 
     public void fetchAdrStringBySep(String s, Character separator){
         for(String str : s.split("\\"+separator)){
