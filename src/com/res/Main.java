@@ -53,20 +53,23 @@ public class Main {
             e.printStackTrace();
         }
 
-
         /**
          * GET & SET THE GROUPS
          */
-        System.out.println("How many groups ? : ");
-        s = sc.nextLine();
+        int groupMax = lstv.getNbrVictim() / 3;
+        int nbGroup = 0;
 
-        //#TODO verification du nbr de victimes par rapport au groupe
-        int z = lstv.getNbrVictim() / Integer.parseInt(s);
+        while(nbGroup == 0 || nbGroup > groupMax) {
+            System.out.println(String.format("How many groups ? [Max %d]: ", groupMax));
+            s = sc.nextLine();
+            nbGroup = Integer.parseInt(s);
+        }
 
-        for (int i = 0; i < z; i++) {
+
+        for (int i = 0; i < nbGroup; i++) {
             GroupOfVictim g = new GroupOfVictim();
-            g.setRecipient(lstv.getASublist(i * z, z - 1));
-            g.setSender(lstv.getOneVictim(i * z));
+            g.setRecipient(lstv.getASublist(i * nbGroup, nbGroup - 1));
+            g.setSender(lstv.getOneVictim(i * nbGroup));
 
             groups.add(g);
         }
@@ -131,10 +134,22 @@ public class Main {
          * SEND MAIL
          */
         //#TODO choisir les parametres serveur
-        SMTPClient client = new SMTPClient("10.192.95.233", 1025, "prank.com");
+        try {
+            JSONObject conf = (JSONObject)parser.parse(new FileReader("conf.json"));
+            JSONObject smtpConf = (JSONObject)conf.get("smtp");
+            SMTPClient client = new SMTPClient((String)smtpConf.get("address"), (Integer)smtpConf.get("port"), (String)smtpConf.get("hostname"));
 
-        //#TODO demander une confirmation
-        client.sendMail(mail);
+
+            //#TODO demander une confirmation
+            client.sendMail(mail);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
 
         sc.nextLine();
