@@ -11,8 +11,8 @@ public class ListOfMessage {
         }
     }
 
-    public String[] getMessage() {
-        return listOfMessage.toArray(new String[listOfMessage.size()]);
+    public List<String> getMessage() {
+        return listOfMessage;
     }
 
 

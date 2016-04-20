@@ -15,6 +15,9 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        /**
+         * VAR
+         */
         String s;
         Scanner sc = new Scanner(System.in);
         ListOfVicitim lstv = new ListOfVicitim();
@@ -26,6 +29,11 @@ public class Main {
 
         System.out.println("SMTP PRANK");
         System.out.println("==========");
+
+
+        /**
+         * GET LIST MAIL
+         */
         System.out.println("Enter the name of file where the list of email is  : ");
         s = sc.nextLine();
 
@@ -33,11 +41,13 @@ public class Main {
             Object obj = parser.parse(new FileReader(s));
             JSONObject jsonObject = (JSONObject) obj;
 
-            JSONArray msg = (JSONArray) jsonObject.get("mail");
-            Iterator<String> iterator = msg.iterator();
+            JSONArray person = (JSONArray) jsonObject.get("person");
+            Iterator<JSONObject> iterator = person.iterator();
             while (iterator.hasNext()) {
-                lstv.addVictim(iterator.next());
+                System.out.println(iterator.next().get("mail"));
             }
+
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -46,6 +56,10 @@ public class Main {
             e.printStackTrace();
         }
 
+
+        /**
+         * GET & SET THE GROUPS
+         */
         System.out.println("How many groups ? : ");
         s = sc.nextLine();
 
@@ -61,18 +75,21 @@ public class Main {
         }
 
 
+        /**
+         * GET THE MESSAGE
+         */
         System.out.println("Enter a the name of the file where the message are : ");
         s = sc.nextLine();
 
         try {
             Object obj = parser.parse(new FileReader(s));
             JSONObject jsonObject = (JSONObject) obj;
-
             JSONArray msg = (JSONArray) jsonObject.get("messages");
             Iterator<String> iterator = msg.iterator();
             while (iterator.hasNext()) {
                 lstm.addMessage(iterator.next());
             }
+            
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -82,21 +99,29 @@ public class Main {
         }
 
 
+        /**
+         * CHOOSE GROUP
+         */
         for(int i=0;i < groups.size();i++){
-            System.out.print(i+") ");
+            System.out.print(i+") Recipient : ");
             for(String str : groups.get(i).getRecipient())
-                System.out.print(str+";");
+                System.out.print(str+",");
+            System.out.print("Sender : " + groups.get(i).getSender());
+            System.out.println();
         }
-
 
         System.out.println("Choose the group :");
         s = sc.nextLine();
 
-        mail.setTo();
-        mail.setFrom();
+        mail.setTo(groups.get(Integer.parseInt(s)).getRecipient());
+        mail.setFrom(groups.get(Integer.parseInt(s)).getSender());
 
-        for (String msg : lstm.getMessage()) {
-
+        /**
+         * CHOOSE MESSAGE
+         */
+        for(int i=0;i < lstm.getMessage().size();i++){
+            System.out.print(i+") "+lstm.getMessage().get(i));
+            System.out.println();
         }
 
         System.out.println("Choose the message");
@@ -104,6 +129,10 @@ public class Main {
 
         mail.setMsg(s);
 
+
+        /**
+         * SEND MAIL
+         */
         //#TODO choisir les parametres serveur
         SMTPClient client = new SMTPClient("10.192.95.233", 1025, "prank.com");
 

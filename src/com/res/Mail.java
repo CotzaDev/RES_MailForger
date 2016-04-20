@@ -11,7 +11,7 @@ public class Mail {
         return from;
     }
 
-    public List getTo() {
+    public List<String> getTo() {
         return to;
     }
 
