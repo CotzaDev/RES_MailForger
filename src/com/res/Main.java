@@ -133,15 +133,18 @@ public class Main {
         /**
          * SEND MAIL
          */
-        //#TODO choisir les parametres serveur
         try {
             JSONObject conf = (JSONObject)parser.parse(new FileReader("conf.json"));
             JSONObject smtpConf = (JSONObject)conf.get("smtp");
-            SMTPClient client = new SMTPClient((String)smtpConf.get("address"), (Integer)smtpConf.get("port"), (String)smtpConf.get("hostname"));
+            SMTPClient client = new SMTPClient((String)smtpConf.get("address"),
+                    ((Integer)smtpConf.get("port")).intValue(), (String)smtpConf.get("hostname"));
 
 
-            //#TODO demander une confirmation
-            client.sendMail(mail);
+            System.out.println("Are you sure you want to send those mails ? [Y/N]: ");
+            s = sc.nextLine();
+            if (s.toLowerCase() == "y") {
+                client.sendMail(mail);
+            }
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -152,6 +155,7 @@ public class Main {
         }
 
 
+        System.out.println("Press ENTER to exit: ");
         sc.nextLine();
     }
 }
