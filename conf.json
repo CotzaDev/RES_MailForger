@@ -1,6 +1,6 @@
 {
     "smtp": {
-        "address": "10.0.0.1",
+        "address": "10.192.95.233",
         "port": 1025,
         "hostname": "prank.com"
     }
