@@ -33,7 +33,7 @@ This where all the messages and there subject are stored
 
 ### class diagram
 
-![Class diagram](figures/classDiagram.bmp)
+![Class diagram](figures/classDiag.bmp)
 
 ### SMTPClient
 
@@ -50,8 +50,8 @@ This class are just here to make things more easy to maintain & upgrade. They ar
 This the main class of the project.
 
 ## Some screenshot !
-![Screen of Console 1](figures/resultConsoleOne.png)
-![Screen of Console 2](figures/resultConsoleTwo.png)
+![Screen of Console 1](figures/resultConsoleOne.PNG)
+![Screen of Console 2](figures/resultConsoleTwo.PNG)
 
 ## Install a mock SMTP server for testing
 
