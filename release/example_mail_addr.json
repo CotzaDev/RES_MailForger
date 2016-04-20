@@ -1,0 +1,13 @@
+{
+  "person": [
+    {
+      "mail": "person1@example.tld"
+    },
+    {
+      "mail":"person2@example.tld"
+    },
+    {
+      "mail":"person3@example.tld"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+    "smtp": {
+        "address": "smtp.server.tld",
+        "port": 25,
+        "hostname": "server.tld"
+    }
+}

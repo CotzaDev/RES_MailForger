@@ -1,40 +1,55 @@
 # RES_MailForger
 
 ## Description
-this program is a simple SMTP client with a console interface to create some forged mails for pranking your friend. 
+
+This program is a simple SMTP client with a console interface to create some forged mails for pranking your friend.
 
 ## How to use it
-just clone the repo, import the project in your favorite IDE (I recommend Inteliji) & just launch it. Then you must edit the json files.
+
+Just clone the repo, go into the *release* folder with your terminal and execute the following command:
+
+`java -jar MailForger.jar`
+
+Don't forget to edit the server configuration in *conf.json* file.
+
+An example of mail list file and messages list file are provided in the release folder.
 
 ### conf.json
-this is the configuration file where you can set :
+
+This is the configuration file where you can set :
 * the address of the SMTP server
 * the port of the SMTP server
 * the hostname that you want to be authentified by the SMTP server
 
 ### mail.json
-this where all the email for the prank are stored.
+
+This where all the email for the prank are stored.
 
 ### messages.json
-this where all the messages and there subject are stored
+
+This where all the messages and there subject are stored
 
 ## How it's implemented
+
 ### class diagram
+
 ![Class diagram](figures/classDiagram.bmp)
 
 ### SMTPClient
+
 This class manage all the communication between the server and your machine. When the class is instanciated, the constructor try to connect to the SMTP server. If it receive a 200 SMTP code (SMTP code to say you are well connected), then the constructor try to send a HELO command to the server. If it's ok (250 SMTP code), then you can try to send mail with the function sendMail(Mail m).
 
 The function sendMail work like the constructor, it's try to make the different SMTP command to send a mail and if something goes wrong, a logger display it.
 
 ### Mail, ListOfVictim, ListOfMessage & GroupOfVictim
+
 This class are just here to make things more easy to maintain & upgrade. They are just abstraction from the things that they are named after.
 
 ### Main
+
 This the main class of the project.
 
 ## Some screenshot !
-
 
 ## Install a mock SMTP server for testing
 

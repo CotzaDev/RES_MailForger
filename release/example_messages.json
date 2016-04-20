@@ -1,0 +1,14 @@
+{
+  "messages": [
+    {
+      "title": "msg1",
+      "subject": "Test",
+      "message": "blabla"
+    },
+    {
+      "title": "msg2",
+      "subject": "Test2",
+      "message": "blablab\r\nbla"
+    }
+  ]
+}
