@@ -7,8 +7,17 @@ import java.util.List;
  * Class to manage the group of victim
  */
 public class GroupOfVictim {
-    private List<String> recipient = new ArrayList<String>();
+    private List<String> recipient;
     private String sender;
+
+    GroupOfVictim() {
+        this.recipient = new ArrayList<String>();
+    }
+
+    GroupOfVictim(List<String> lst, String sender) {
+        this.recipient = lst;
+        this.sender = sender;
+    }
 
     public void setRecipient(List<String> aSublist) {
         recipient = aSublist;

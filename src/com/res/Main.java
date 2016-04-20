@@ -37,21 +37,7 @@ public class Main {
         System.out.println("Enter the name of file where the list of email is  : ");
         s = sc.nextLine();
 
-        try {
-            Object obj = parser.parse(new FileReader(s));
-            JSONObject jsonObject = (JSONObject) obj;
-            JSONArray person = (JSONArray) jsonObject.get("person");
-            Iterator<JSONObject> iterator = person.iterator();
-            while (iterator.hasNext()) {
-                lstv.addVictim((String) (iterator.next().get("mail")));
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        lstv.loadJson(s);
 
         /**
          * GET & SET THE GROUPS
@@ -93,27 +79,7 @@ public class Main {
         System.out.println("Enter a the name of the file where the message are : ");
         s = sc.nextLine();
 
-        try {
-            Object obj = parser.parse(new FileReader(s));
-            JSONObject jsonObject = (JSONObject) obj;
-            JSONArray msg = (JSONArray) jsonObject.get("messages");
-            Iterator<JSONObject> iterator = msg.iterator();
-            while (iterator.hasNext()) {
-                JSONObject objm = iterator.next();
-                Message m = new Message();
-                m.setTitle((String)objm.get("title"));
-                m.setSubj((String)objm.get("subject"));
-                m.setMsg((String)objm.get("message"));
-                lstm.addMessage(m);
-            }
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        lstm.loadJson(s);
 
 
         /**

@@ -11,9 +11,23 @@ import java.util.Locale;
  */
 public class Mail {
     String from;
-    List<String> to = new ArrayList<String>();
+    List<String> to;
     String subj;
     String msg;
+
+    Mail() {
+        this.from = "";
+        this.to = new ArrayList<String>();
+        this.subj = "";
+        this.msg = "";
+    }
+
+    Mail(String from, List<String> to, String subj, String msg) {
+        this.from = from;
+        this.to = to;
+        this.subj = subj;
+        this.msg = msg;
+    }
 
     public String getFrom() {
         return from;
