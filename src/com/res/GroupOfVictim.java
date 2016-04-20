@@ -13,4 +13,12 @@ public class GroupOfVictim {
     public void setSender(String sender) {
         this.sender = sender;
     }
+
+    public String[] getRecipient(){
+        return recipient.toArray(new String[recipient.size()]);
+    }
+
+    public String getSender(){
+        return sender;
+    }
 }

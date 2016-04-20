@@ -16,4 +16,7 @@ public class ListOfMessage {
     }
 
 
+    public void addMessage(String next) {
+        listOfMessage.add(next);
+    }
 }

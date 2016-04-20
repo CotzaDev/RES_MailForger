@@ -22,4 +22,8 @@ public class ListOfVicitim {
     public String getOneVictim(int i) {
         return lstAdrVictim.get(i);
     }
+
+    public void addVictim(String next) {
+        lstAdrVictim.add(next);
+    }
 }
