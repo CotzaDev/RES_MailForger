@@ -97,9 +97,14 @@ public class Main {
             Object obj = parser.parse(new FileReader(s));
             JSONObject jsonObject = (JSONObject) obj;
             JSONArray msg = (JSONArray) jsonObject.get("messages");
-            Iterator<String> iterator = msg.iterator();
+            Iterator<JSONObject> iterator = msg.iterator();
             while (iterator.hasNext()) {
-                lstm.addMessage(iterator.next());
+                JSONObject objm = iterator.next();
+                Message m = new Message();
+                m.setTitle((String)objm.get("title"));
+                m.setSubj((String)objm.get("subject"));
+                m.setMsg((String)objm.get("message"));
+                lstm.addMessage(m);
             }
 
         } catch (FileNotFoundException e) {
@@ -132,14 +137,15 @@ public class Main {
          * CHOOSE MESSAGE
          */
         for (int i = 0; i < lstm.getMessage().size(); i++) {
-            System.out.print(i + ") " + lstm.getMessage().get(i));
+            System.out.print(i + ") " + lstm.getMessage().get(i).getTitle());
             System.out.println();
         }
 
         System.out.println("Choose the message");
         s = sc.nextLine();
 
-        mail.setMsg(lstm.getMessage().get(Integer.parseInt(s)));
+        mail.setSubj(lstm.getMessage().get(Integer.parseInt(s)).getSubj());
+        mail.setMsg(lstm.getMessage().get(Integer.parseInt(s)).getMsg());
 
 
         /**

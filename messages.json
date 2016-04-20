@@ -1,6 +1,14 @@
 {
   "messages": [
-    "test",
-    "test2"
+    {
+      "title": "Trump compain",
+      "subject": "Vote for me, your new god!",
+      "message": "A new god arrived to the heig-vd administration\r\n Vote for me !\r\n\r\n--\r\nDonald"
+    },
+    {
+      "title": "test",
+      "subject": "This is a test",
+      "message": "Test :)"
+    }
   ]
 }

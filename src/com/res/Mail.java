@@ -1,7 +1,10 @@
 package com.res;
 
-import java.util.List;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * Class who manage and abstract a mail
@@ -9,6 +12,7 @@ import java.util.ArrayList;
 public class Mail {
     String from;
     List<String> to = new ArrayList<String>();
+    String subj;
     String msg;
 
     public String getFrom() {
@@ -21,11 +25,21 @@ public class Mail {
 
     public String getHeader() {
         String header = "";
-        header += "From: <" + from + ">\n";
+        header += "From: <" + from + ">\r\n";
         for (String str : to)
-            header += "To: <" + str + ">\n";
+            header += "To: <" + str + ">\r\n";
+
+        Date dDate = new Date();
+        DateFormat dFormat = DateFormat.getDateInstance(DateFormat.FULL, Locale.US);
+        header += "Date: " + dFormat.format(dDate) + "\r\n";
+
+        header += "Subject: " + subj + "\r\n";
 
         return header;
+    }
+
+    public String getSubj() {
+        return subj;
     }
 
     public String getMsg() {
@@ -38,6 +52,10 @@ public class Mail {
 
     public void setFrom(String from) {
         this.from = from;
+    }
+
+    public void setSubj(String subj) {
+        this.subj = subj;
     }
 
     public void setMsg(String msg) {

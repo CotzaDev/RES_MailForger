@@ -8,13 +8,13 @@ import java.util.List;
  * Class to manage a list of message
  */
 public class ListOfMessage {
-    List<String> listOfMessage = new ArrayList<String>();
+    List<Message> listOfMessage = new ArrayList<Message>();
 
-    public List<String> getMessage() {
+    public List<Message> getMessage() {
         return listOfMessage;
     }
 
-    public void addMessage(String next) {
+    public void addMessage(Message next) {
         listOfMessage.add(next);
     }
 }
