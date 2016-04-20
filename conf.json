@@ -1,0 +1,7 @@
+{
+    "smtp": {
+        "address": "10.0.0.1",
+        "port": 1025,
+        "hostname": "prank.com"
+    }
+}
